@@ -1,10 +1,10 @@
 # Learning the Basics (4hrs 30min)
 
-Reminder: the times besides the sections are **how long you should spend on the section**, **NOT** how long it takes to be completed.
+Reminder: the times besides the sections are how long you should spend on the section, **NOT** how long it takes to be completed.
 
 ## HTML (1hr)
 
-HTML is the bones of web development. No matter how fancy a website is, this is what it gets distilled down to. We won't actually be coding in this later, but do get familar with it.
+HTML is the bones of web development. No matter how fancy a website is, this is what it gets distilled down to. We won't actually be coding in this later, but do get familiar with it.
 
 > [Build a cat photo app](https://www.freecodecamp.org/learn/2022/responsive-web-design/#learn-html-by-building-a-cat-photo-app)
 
@@ -12,7 +12,7 @@ HTML is the bones of web development. No matter how fancy a website is, this is 
 
 ## Flexbox (30min)
 
-As you were building out the cat app, you may have notcied the lack of styling. There are many ways to add styling to a web page, however the most relevant to us is flex box. Knowing this will become more and more important as you get into styling your web pages more, but for now, have a go at this game and tuck the info at the back of your mind.
+As you were building out the cat app, you may have noticed the lack of styling. There are many ways to add styling to a web page, however the most relevant to us is flex box. Knowing this will become more important as you get into styling your web pages more, but for now, have a go at this game and tuck the info at the back of your mind.
 
 > [Flex Box Froggy](https://flexboxfroggy.com/)
 
