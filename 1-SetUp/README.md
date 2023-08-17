@@ -1,228 +1,69 @@
-# First things first (3hrs)
+# First things first
 
-## Get the tools (1hr)
+## Get the tools
 
-1. [Download VS code](https://code.visualstudio.com/)
+We use [Visual Studio Code](https://code.visualstudio.com/) with the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension. This lets you use a [Docker container](https://docker.com/) as a full-featured development environment. A devcontainer.json file in Core tells VS Code how to access (or create) a development container with a well-defined tool and runtime stack.
 
-2. Computer set up
+To get started try the following:
 
-   - **Mac users** [set up](/mac-setup.md)
-   - **PC users** [set up](/pc-setup.md)
-
-<!-- 3. [Set Zsh as your default terminal for vsCode](https://www.shanebart.com/set-default-vscode-terminal/) -->
-
-3. Get some extensions for VS code
-
-   - Open extensions menu (button looks the one below)
-
-     ![extensions button](https://lh4.googleusercontent.com/s3Ic3DZ_t7fXuiSG0SxAYpGZULsif0QPm_jWoTWTDvAT-PohsXBbsuzZwrGnZ3k8uWA=w2400)
-
-   - I reccomend these ones, but feel free to get more!
-
-     > - ESLint
-     > - Prettier
-     > - (optional) vscode-icons
-     > - (optional) Jest Runner
-     > - (optional) GitLens - Git supercharged
-     > - (optional) A [theme](https://code.visualstudio.com/docs/getstarted/themes) of your choice (I like the default dark+)
-
-     <br/>
-
-4. Visual Studio Code settings
-
-   In VS Code:
-
-   1. Click the Settings cog button in the bottom left and open the Command Palette.
-   2. Type `settings.json` into the little search box that appears at the top of your screen.
-   3. Click on the `Preferences: Open Settings (JSON)` option to open your `settings.json` config file.
-
-   4. Paste these contents inside the curly brackets:
-
-      ```json
-      "editor.detectIndentation": false,
-      "editor.insertSpaces": true,
-      "editor.tabSize": 2,
-      "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
-      "editor.bracketPairColorization.enabled": true,
-      "editor.guides.bracketPairs":"active",
-      "[javascript]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[javascriptreact]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "prettier.semi": false,
-      "prettier.singleQuote": true
-      ```
-
-   5. Save your `settings.json` file.
-
-      > Note that each entry in your `settings.json` should end in a comma except for the last one, so if there are some existing entries you'll need to add a comma before pasting the above lines.
-      >
-      > See [Accessibility of code in VS Code or the terminal](code-accessibility.md) for suggestions on how you might customise your setup for readability.
-
- <br/>
-
-## Github (2hrs)
-
-In this section you will :
-
-- Make a copy of this repo for your self, aslo called `forking`
-- Open the project localy with vscode
-- Making a change by `staging` and `commiting` to the local project, and `pushing` it to the remote
-- Merging together your new changes with the existing with a `pull request`
-
-The instructions below serve as a primer into the use of github. But as they say, practice makes perfect! Keep making updates to the repo as you tick off tasks/ solve katas (more on that later ;D)
+1. Install [Visual Studio Code](https://code.visualstudio.com/)
+1. Install [Docker Desktop](https://www.docker.com/get-started)
+1. Start Docker Desktop
+   - **PC users**: Windows limits resources to WSL 2 (Memory/CPU), this limit can be configured in your [.wslconfig file](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig).
+1. Start VS Code and add [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) Extension
+1. Run `Dev-Containers: Clone Repository in Container Volume...` from the Command Palette (F1).
+1. Pick GitHub (You'll need to authenticate with GitHub), then enter `JesusFilm/react-prep`, finally choose the `main` branch to clone.
+1. The VS Code window (instance) will reload, clone the source code, and start building the dev container. A progress notification provides status updates.
+1. After the build completes, VS Code will automatically connect to the container. You can now work with the repository source code in this independent environment as you would if you had cloned the code locally.
 
 <details>
-<summary>1. Why is version control important</summary>
+<summary>Common Issues</summary>
 
-- Watch this [intro](https://www.youtube.com/watch?v=uUuTYDg9XoI&ab_channel=CodemySchool)
-  to github
-- Watch this more in depth [video series](https://app.pluralsight.com/player?name=6eec00f4-f910-4efc-9698-936948026502&mode=live&clip=0&course=code-school-git-real&author=gregg-pollack) on how to use github
-  > You'll notice that in the second video, the guy uses command line tools to manipulate his git. Further down below I will show you how to do the same things through vscode. (Although feel free to try it with the command line tools)
-    </details>
-    <br/>
+### VS Code fails to build container on Mac
 
-<details>
-<summary>2. Create your github account</summary>
+```
+docker-compose version --short
+fork/exec /usr/local/bin/docker-compose-v1: bad CPU type in executable
+```
 
-- [Create an account](https://github.com/)
-- Choose a username (preferbly something that won't make you cringe 10 years down the track lol)
-- Add a photo
+1. Open Docker Desktop
+1. Go to Settings -> General, and scroll down to the bottom
+1. Tick 'Use Docker Compose V2'
+1. Click 'Apply & Restart'
+1. Go to VS code and run 'Rebuild Container'. The container should now build successfully
 
-    </details>
-    <br/>
+### Container is running slowly or crashing on Mac
 
-<details>
-<summary>3. Get the repo</summary>
+1. Open Docker Desktop
+1. Go to settings -> Resources -> Advanced
+1. Set CPUs: 7, Memory: 12.00GB, Swap: 4GB
+1. Click 'Apply & Restart'
+</details>
 
-- Click `Create a new Fork`, and make sure to save to your own account
+## Github
 
-  ![fork](https://lh6.googleusercontent.com/P3WaVUwoWZeOvehjDERRLUZ_f1ybsgVMgzjE2J74OHLsdLOqIa7JvaEFy5cuvP8c3-g=w2400)
+[Why is version control important?](https://www.youtube.com/watch?v=uUuTYDg9XoI&ab_channel=CodemySchool)
 
-- Get the URL
+1. Creating your own branch.
 
-  ![url](https://lh5.googleusercontent.com/cuET3Dlya-I5TRM0wOdDgiZMbC6gfd4GE_cmWcNZozqM1qrH_yEUbjdwhdg2eFns0gc=w2400)
+- Create a new branch by clicking on the current branch name, click `+ Create new branch...` and enter the name of your new branch as `[user-name]-main`
 
-    <details>
-    <Summary>Mac</Summary>
+  You will be using this as your main branch, and it is where you will be pushing your changes to.
 
-  - Open vscode goto `Explorer` and click `Clone Repository`
-
-    ![open](https://lh6.googleusercontent.com/iHqvvsyyqqvaGsFHYCslhNZWh09oYlFvvh4bO-ZtI9IkfL1GD4o_n1Vi5lLRKyGC-Mo=w2400)
-
-  - Paste in the URL and press `enter`
-
-    ![paste](https://lh6.googleusercontent.com/_PGp8cMowJcqM1sQxhipML6IywDUuoVRQE5VaZhrfU0Ds5SyEOhK2XXuKk3WW0ofp-M=w2400)
-    </details>
-
-      <details>    
-      <summary>PC</summary>
-
-    We're going to clone a repo into your ubuntu. Do the following in your `termnial` app
-
-    1. We'll start by creating a directory to keep all your repos in
-
-    ```sh
-    mkdir ~/workspaces
-    ```
-
-    2. and then change directory into it:
-
-    ```sh
-    cd ~/workspaces
-    ```
-
-    From your Ubuntu terminal, clone down `react-prep`
-
-    ```sh
-    git clone https://github.com/yourGitHubName/react-prep.git
-    ```
-
-    > The URL should be the same as the one you got earlier.
-
-    8. Now we're going change directory into the new directory:
-
-    ```sh
-    cd react-prep
-    ```
-
-    and open Visual Studio Code
-
-    ```
-    code .
-    ```
-
-    9. Now you should be looking at the react-test in your editor. Click on the `README.md` file to read instructions from VS Code.
-
-    > Running `code .` from the ubuntu terminal is the way we will open Visual
-    > Studio Code. This ensures it opens in the Ubuntu context
-
-    Run this command in your Ubuntu terminal:
-
-    ```sh
-    Explorer.exe .
-    ```
-
-    Windows explorer will open that directory.
-
-    This is a quick and easy way to access your Linux files from windows if you ever need to.
-
-      </details>
-
-  - Log into github in vscode
-
-    In vs code press the following keys to open the terminal
-
-    ```
-    ctrl + shift + ~
-    ```
-
-    For these next two commands, replace the name and email with your own details
-
-    You'll need to configure git to know your name...
-
-    ```sh
-    git config --global user.name "Firstname Lastname"
-    ```
-
-    ... and your email address. These will be recorded as the author in commits you make
-
-    ```sh
-    git config --global user.email "your.name@example.com"
-    ```
-
-    If you prefer git to save your credentials instead of entering them each time, you can configure git to store them
-
-    ```sh
-    git config --global credential.helper store
-    ```
-
-    Run this command to make visual studio code your default editor for git commit messages
-
-    ```sh
-    git config --global core.editor "code --wait"
-    ```
-
-      </details>
-      <br/>
-
-<details>
-<summary>4. Make your first commit</summary>
-
-- Create a new branch by clicking on the current branch name, click `+ Create new branch...` and entering the name of your new branch
-
-  ![branch](https://lh6.googleusercontent.com/F6G1Mvz6nvj5DyqTO_kGNOSWFfAVXMmp-xItdCEFYxaEiR84X6TYg2zk1xsLuhbg-aU=w2400)
+  ![branch](https://drive.google.com/uc?export=view&id=14bKh6_feK7b86DTt-zT_AlpOfM3Mikpr)
 
   _branches are what allows us to all work collaboratively_
+
+-
+
+2. Making your first commit.
+
+- Create another new branch and call it `complete-first-task`
 
 - Tick off the first task from the main [readme](../README.md) by making the following change
 
   ```
-  - [x] 1. [Inital Set Up](/1-SetUp/README.md)
+  - [x] 1. [Initial Set Up](/1-SetUp/README.md)
   ```
 
 - Stage the change by going to `Source Control` and pressing the `+` next to the file you changed
@@ -245,11 +86,13 @@ The instructions below serve as a primer into the use of github. But as they say
 
     ![select branch](https://lh5.googleusercontent.com/UwMIYiBhEfGA5xRxO11vg4RMvBQCqxExWOZhLGq-0z1DLoNZU44fTUA26IRSPopObzA=w2400)
 
+  - Make sure to select **your main branch** as the base branch. (`[user-name]-main`)
+
   - Click `Create Pull Request`
 
     ![create pr](https://lh6.googleusercontent.com/h8NZUIqBl2-LMtfrWIh52KlTdlDKYWalIxvziIOknGFFn-68K1kVcmcZr-N2AkdfLec=w2400)
 
-    _Depedning on the teams your on, you may be required to fill in a description as well as the list on the right_
+    _Depending on the teams your on, you may be required to fill in a description as well as the list on the right_
 
 - Review and merge
 
@@ -258,12 +101,3 @@ The instructions below serve as a primer into the use of github. But as they say
   _Have a look at the `Commits` tab and the `Files changed` tab, these are what your reviewers will be looking at when working apart of a project_
 
 Note: You can push changes straight to your main branch and don't have to raise a PR to make a change. But most projects you'll be apart of will require you to.
-
-</details>
-<br/>
-
-## Stretch
-
-These are optional things that you can look into for more indepth knowledge of the covered topics. Something you can do if you would like to be further stretched/ or just have the time to do.
-
-- [Github Skills](https://skills.github.com/)
